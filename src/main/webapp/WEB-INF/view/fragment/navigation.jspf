@@ -1,0 +1,50 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="security"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<nav class="navbar fixed-top navbar-expand-lg custom-navigation">
+	<a href="${pageContext.request.contextPath}/menu" class="navbar-brand custom-brand">System Wypożyczeń</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse"
+		data-target="#collapseMenu" aria-expanded="false"
+		aria-controls="collapseExample">
+		<span class="navbar-toggler-icon">Menu</span>
+	</button>
+	<div class="collapse navbar-collapse" id="collapseMenu">
+		<div class="mr-auto px-2">
+			<ul class="navbar-nav right mr-auto mt-2 mt-lg-0">
+				<li class="nav-item"><a class="nav-link"
+					href="#">Przeglądaj</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">Wystaw
+						produkt</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">O
+						serwisie</a></li>
+			</ul>
+		</div>
+		<div class="px-2">
+			<security:authorize access="isAnonymous()">
+
+				<ul class="navbar-nav right mr-auto mt-2 mt-lg-0">
+					<li class="nav-item"><a class="nav-link" href="#">Zaloguj
+							się</a></li>
+				</ul>
+
+			</security:authorize>
+			<security:authorize access="isAuthenticated()">
+
+				<ul class="navbar-nav right mr-auto mt-2 mt-lg-0">
+					<li class="nav-item"><a class="nav-link" href="#">Moje
+							konto</a></li>
+
+					<li class="nav-item"><form:form action="#" method="post">
+							<button class="custom-submit-button nav-link" type="submit">Wyloguj
+								się</button>
+						</form:form></li>
+				</ul>
+			</security:authorize>
+		</div>
+
+	</div>
+
+</nav>

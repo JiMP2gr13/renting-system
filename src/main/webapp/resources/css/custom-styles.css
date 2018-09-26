@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+body {
+	padding-top: 65px;
+}
+
+.bottom-spaced-row {
+	padding-bottom: 30px;
+}
+
+.custom-navigation {
+	background-color: #ff8000;
+	font-size: 1.5rem;
+}
+
+.custom-navigation > .custom-brand{
+	color:black;
+}
+.custom-navigation > .custom-brand:hover{
+	color: #ff0000;
+}
+
+.navbar-nav .nav-link {
+	color: #0000a0;
+	text-align: center;
+}
+
+.navbar-nav .nav-link:hover {
+	color: #ff0000;
+/*	transform: rotate(-5deg);*/
+	transform: scale(1.1);
+	
+}
+
+.success-message {
+	color: green;
+	font-style: italic;
+}
+
+.error-message {
+	font-color: red;
+	font-style: italic;
+}
+
+.custom-submit-button {
+	background: none;
+	border-width: 0px;
+	cursor: pointer;
+	color: #8585fe;
+}
+
+a:hover, button:hover {
+	color: #800040;
+}
+
+	
+}
