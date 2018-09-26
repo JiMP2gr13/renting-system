@@ -22,7 +22,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	// Na razie ten plik jest bardzo podstawowy i niewiele daje! Do dostosowanej
-	// autentykacji trzeba bêdzie go przebudowaæ
+	// autentykacji trzeba bï¿½dzie go przebudowaï¿½
 
 	@Autowired
 	private DataSource securityDataSource;
