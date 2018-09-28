@@ -3,7 +3,7 @@ package com.skteam.rentingsystem.entity;
 import javax.persistence.*;
 import java.sql.Date;
 
-@Entity
+@Entity	
 @Table(name = "comment")
 public class Comment {
 

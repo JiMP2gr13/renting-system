@@ -29,12 +29,12 @@ public class Item {
     private User owner;
 
     @Column(name = "cost_per_day")
-    private float costPerDay;
+    private Double costPerDay;
 
     public Item() {
     }
 
-    public Item(String name, Category category, String photoPath, String details, User owner, float costPerDay) {
+    public Item(String name, Category category, String photoPath, String details, User owner, Double costPerDay) {
         this.name = name;
         this.category = category;
         this.photoPath = photoPath;
@@ -91,11 +91,11 @@ public class Item {
         this.owner = owner;
     }
 
-    public float getCostPerDay() {
+    public Double getCostPerDay() {
         return costPerDay;
     }
 
-    public void setCostPerDay(float costPerDay) {
+    public void setCostPerDay(Double costPerDay) {
         this.costPerDay = costPerDay;
     }
 

@@ -1,83 +1,114 @@
 package com.skteam.rentingsystem.entity;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "user")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
 
-    @Column(name = "first_name")
-    private String firstName;
+	@Column(name = "first_name")
+	private String firstName;
 
-    @Column(name = "last_name")
-    private String lastName;
+	@Column(name = "last_name")
+	private String lastName;
 
-    @Column(name = "email")
-    private String email;
+	@Column(name = "email")
+	private String email;
 
-    @ManyToMany
-    @JoinTable(
-            name = "rent-item",
-            joinColumns = @JoinColumn(name = "customer_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_id")
-    )
-    private List<Item> rentedItems;
+	@ManyToMany
+	@JoinTable(name = "rent-item", joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "item_id"))
+	private List<Item> rentedItems;
 
-    @OneToMany(mappedBy = "owner")
-    private List<Item> ownedItems;
+	@OneToMany(mappedBy = "owner")
+	private List<Item> ownedItems;
 
-    @OneToMany(mappedBy = "owner")
-    private List<Comment> comments;
+	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+	private List<Comment> comments;
 
+	public User() {
+	}
 
-    public User() {
-    }
+	public void addOwnedItem(Item item) {
+		if (ownedItems == null) {
+			ownedItems = new ArrayList<>();
+		}
+		ownedItems.add(item);
+	}
 
-    public int getId() {
-        return id;
-    }
+	public void addComment(Comment comment) {
+		if (comments == null) {
+			comments = new ArrayList<>();
+		}
+		comments.add(comment);
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public List<Item> getRentedItems() {
+		return rentedItems;
+	}
+
+	public void setRentedItems(List<Item> rentedItems) {
+		this.rentedItems = rentedItems;
+	}
+
+	public List<Item> getOwnedItems() {
+		return ownedItems;
+	}
+
+	public void setOwnedItems(List<Item> ownedItems) {
+		this.ownedItems = ownedItems;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
+				+ ", email='" + email + '\'' + '}';
+	}
 }
