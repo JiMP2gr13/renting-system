@@ -36,14 +36,17 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public List<Item> getUserOwnedItems(User user) {
 		Session session = sessionFactory.getCurrentSession();
-		//Query<Item> query = session.createQuery("select i from Item i where i.owner.") do zas
-		return null;
+		Query<Item> query = session.createQuery("select i from Item i where i.owner.login=:login", Item.class);
+		query.setParameter("login", user.getLogin());
+		return query.getResultList();
 	}
 
 	@Override
 	public void deleteItem(int id) {
-		// TODO Auto-generated method stub
-
+		Session session = sessionFactory.getCurrentSession();
+		Query<Item> query = session.createQuery("delete from Item i where i.id=:id", Item.class);
+		query.setParameter("id", id);
+		query.executeUpdate();
 	}
 
 }
