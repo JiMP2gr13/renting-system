@@ -32,7 +32,7 @@ CREATE TABLE `item` (
   `cost_per_day` decimal(10,2) default null,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`owner_id`) REFERENCES `user`(`id`),
-  foreign key (`category_id`) references `category`(`id`)
+  foreign key (`category_id`) references `user`(`id`)
   
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
@@ -62,7 +62,7 @@ CREATE TABLE `comment` (
   
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
-INSERT INTO `user` VALUES 
+INSERT INTO `user` VALUES
 	(1,'David','Adams','david@gmail.com'),
 	(2,'John','Doe','john@gmail.com'),
 	(3,'Ajay','Rao','ajay@gmail.com'),
