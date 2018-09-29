@@ -46,7 +46,8 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public void deleteItem(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		Query<Item> query = session.createQuery("delete from Item i where i.id=:id", Item.class);
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("delete from Item i where i.id=:id");
 		query.setParameter("id", id);
 		query.executeUpdate();
 	}

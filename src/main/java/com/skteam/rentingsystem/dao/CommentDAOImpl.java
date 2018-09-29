@@ -41,7 +41,8 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public void deleteComment(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		Query<Comment> query = session.createQuery("delete from Comment c where c.id=:id", Comment.class);
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("delete from Comment c where c.id=:id");
 		query.setParameter("id", id);
 		query.executeUpdate();
 	}
