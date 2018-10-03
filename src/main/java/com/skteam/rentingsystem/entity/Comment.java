@@ -20,7 +20,7 @@ public class Comment {
 
     @Column(name = "date", columnDefinition = "DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
+    private java.util.Date date;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -65,7 +65,7 @@ public class Comment {
         this.body = body;
     }
 
-    public Date getDate() {
+    public java.util.Date getDate() {
         return date;
     }
 

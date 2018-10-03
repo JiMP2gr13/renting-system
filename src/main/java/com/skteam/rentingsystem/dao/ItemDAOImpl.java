@@ -32,14 +32,14 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public List<Item> getAllItems() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("select i from Item i", Item.class).getResultList();
+        return session.createQuery("select i from iiem i", Item.class).getResultList();
 	}
 
 	@Override
 	public List<Item> getUserOwnedItems(User user) {
 		Session session = sessionFactory.getCurrentSession();
-		Query<Item> query = session.createQuery("select i from Item i where i.owner.login=:login", Item.class);
-		query.setParameter("login", user.getLogin());
+        Query<Item> query = session.createQuery("select i from item i where i.owner.login=:login", Item.class);
+        query.setParameter("login", user.getUsername());
 		return query.getResultList();
 	}
 
@@ -47,7 +47,7 @@ public class ItemDAOImpl implements ItemDAO {
 	public void deleteItem(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("delete from Item i where i.id=:id");
+        Query query = session.createQuery("delete from item i where i.id=:id");
 		query.setParameter("id", id);
 		query.executeUpdate();
 	}

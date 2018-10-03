@@ -20,7 +20,7 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public void saveComment(Comment comment) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(comment);
+        session.saveOrUpdate(comment);
 	}
 
 	@Override
@@ -32,9 +32,9 @@ public class CommentDAOImpl implements CommentDAO {
 	@Override
 	public List<Comment> getCommentsAboutUser(User user) {
 		Session session = sessionFactory.getCurrentSession();
-		Query<Comment> query = session.createQuery("select c from Comment c where c.owner.login=:ownerLogin",
+        Query<Comment> query = session.createQuery("select c from comment c where c.owner.login=:ownerLogin",
 				Comment.class);
-		query.setParameter("ownerLogin", user.getLogin());
+        query.setParameter("ownerLogin", user.getUsername());
 		return query.getResultList();
 	}
 
@@ -42,7 +42,7 @@ public class CommentDAOImpl implements CommentDAO {
 	public void deleteComment(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("delete from Comment c where c.id=:id");
+        Query query = session.createQuery("delete from comment c where c.id=:id");
 		query.setParameter("id", id);
 		query.executeUpdate();
 	}
