@@ -8,11 +8,11 @@ DROP TABLE IF EXISTS `category`;
 DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
-  `login` nvarchar(45) NOT NULL,
+  username nvarchar(45) NOT NULL,
   `first_name` nvarchar(45) DEFAULT NULL,
   `last_name` nvarchar(45) DEFAULT NULL,
   `email` nvarchar(45) DEFAULT NULL,
-  PRIMARY KEY (`login`)
+  PRIMARY KEY (username)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `category` (
@@ -31,7 +31,7 @@ CREATE TABLE `item` (
   `owner_login` nvarchar(45) not null,
   `cost_per_day` decimal(10,2) default null,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`owner_login`) REFERENCES `user`(`login`),
+  FOREIGN KEY (`owner_login`) REFERENCES `user`(username),
   foreign key (`category_id`) references `category`(`id`)
   
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
@@ -45,7 +45,7 @@ CREATE TABLE `rent-item` (
   `returned` boolean,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`item_id`) REFERENCES `item`(`id`),
-  FOREIGN KEY (`customer_login`) REFERENCES `user`(`login`)
+  FOREIGN KEY (`customer_login`) REFERENCES `user`(username)
   
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
@@ -57,9 +57,8 @@ CREATE TABLE `comment` (
   `body` nvarchar(500) default null,
   `date` datetime default null,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`customer_login`) REFERENCES `user`(`login`),
-  FOREIGN KEY (`owner_login`) REFERENCES `user`(`login`)
-  
+  FOREIGN KEY (`customer_login`) REFERENCES `user`(username),
+  FOREIGN KEY (`owner_login`) REFERENCES `user`(username)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 INSERT INTO `user` VALUES
@@ -70,19 +69,19 @@ INSERT INTO `user` VALUES
 	('maxwll','Maxwell','Dixon','max@gmail.com');
 
 INSERT INTO `category` VALUES 
-	(1,'Książki'),
-	(2,'Sprzęt sportowy'),
+	(1,'KsiÄ…ĹĽki'),
+	(2,'SprzÄ™t sportowy'),
 	(3,'Samochody'),
 	(4,'Rowery'),
-	(5,'Łodzie');
+	(5,'Ĺ�odzie');
 
 
 INSERT INTO `item` VALUES 
-	(1,'Java. Podstawy',1,'../photo_1.png', 'Książka wprowadzająca do jężyka Java.', 'david1998', 5),
-	(2,'Pan Tadeusz',1,'../photo_2.png', 'Książka opowiadająca o życiu polskiej szlachty.', 'david1998', 5),
+	(1,'Java. Podstawy',1,'../photo_1.png', 'KsiÄ…ĹĽka wprowadzajÄ…ca do jÄ™ĹĽyka Java.', 'david1998', 5),
+	(2,'Pan Tadeusz',1,'../photo_2.png', 'KsiÄ…ĹĽka opowiadajÄ…ca o ĹĽyciu polskiej szlachty.', 'david1998', 5),
 	(3,'Kajak Super 2000',5,'../photo_3.png', 'Dwuosobowy kajak.', 'Johnny', 35),
-	(4,'Fiat Punto',3,'../photo_4.png', 'Średnij wielkości samochód.', 'ajayy', 100),
-	(5,'Rower Ranger',4,'../photo_5.png', 'Rower górski.', 'david1998', 50);
+	(4,'Fiat Punto',3,'../photo_4.png', 'Ĺšrednij wielkoĹ›ci samochĂłd.', 'ajayy', 100),
+	(5,'Rower Ranger',4,'../photo_5.png', 'Rower gĂłrski.', 'david1998', 50);
 
 INSERT INTO `rent-item` VALUES 
 	(1,1,'Johnny', '2018-07-21 12:22:01', '2018-07-24 12:22:01', true),
@@ -92,8 +91,8 @@ INSERT INTO `rent-item` VALUES
 	(5,5,'david1998', '2018-03-12 16:34:41', '2018-03-12 09:46:05', true);
 
 INSERT INTO `comment` VALUES 
-	(1,'david1998','Johnny','Świetny wypożyczający', 'Polecam tego użytkownika!', '2018-07-24 12:22:01'),
-	(2,'david1998','ajayy','Świetny wypożyczający', 'Brak żadnych problemów produkt zgodny z opisem.', '2018-07-24 12:22:01'),
-	(3,'Johnny','david1998','Uczciwy', 'Profesjonalna i szybka obsługa!', '2018-07-24 12:22:01'),
-	(4,'marY','david1998','Dobra obsługa', 'Brak problemów', '2018-09-15 10:21:21'),
-	(5,'david1998','maxwll','Fatalny wypożyczający', 'Skorzystanie z jego usług to była pomyłka.', '2018-07-21 12:22:01');
+	(1,'david1998','Johnny','Ĺšwietny wypoĹĽyczajÄ…cy', 'Polecam tego uĹĽytkownika!', '2018-07-24 12:22:01'),
+	(2,'david1998','ajayy','Ĺšwietny wypoĹĽyczajÄ…cy', 'Brak ĹĽadnych problemĂłw produkt zgodny z opisem.', '2018-07-24 12:22:01'),
+	(3,'Johnny','david1998','Uczciwy', 'Profesjonalna i szybka obsĹ‚uga!', '2018-07-24 12:22:01'),
+	(4,'marY','david1998','Dobra obsĹ‚uga', 'Brak problemĂłw', '2018-09-15 10:21:21'),
+	(5,'david1998','maxwll','Fatalny wypoĹĽyczajÄ…cy', 'Skorzystanie z jego usĹ‚ug to byĹ‚a pomyĹ‚ka.', '2018-07-21 12:22:01');

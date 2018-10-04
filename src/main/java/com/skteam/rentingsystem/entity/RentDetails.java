@@ -22,11 +22,11 @@ public class RentDetails {
 
     @Column(name = "rental_date", columnDefinition = "DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date rentalDate;
+    private java.util.Date rentalDate;
 
     @Column(name = "return_date", columnDefinition = "DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date returnDate;
+    private java.util.Date returnDate;
 
     @Column(name = "returned")
     private boolean returned;
@@ -66,7 +66,7 @@ public class RentDetails {
         this.customer = customer;
     }
 
-    public Date getRentalDate() {
+    public java.util.Date getRentalDate() {
         return rentalDate;
     }
 
@@ -74,7 +74,7 @@ public class RentDetails {
         this.rentalDate = rentalDate;
     }
 
-    public Date getReturnDate() {
+    public java.util.Date getReturnDate() {
         return returnDate;
     }
 

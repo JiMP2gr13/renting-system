@@ -10,8 +10,8 @@ import java.util.List;
 public class User {
 
 	@Id
-	@Column(name = "login")
-	private String login;
+    @Column(name = "username")
+    private String username;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -49,12 +49,12 @@ public class User {
 		comments.add(comment);
 	}
 
-	public String getLogin() {
-		return login;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setLogin(String login) {
-		this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
 	}
 
 	public String getFirstName() {
@@ -107,7 +107,14 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User{" + "id=" + login + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
-				+ ", email='" + email + '\'' + '}';
+        return "User{" +
+                "username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", rentedItems=" + rentedItems +
+                ", ownedItems=" + ownedItems +
+                ", comments=" + comments +
+                '}';
 	}
 }
