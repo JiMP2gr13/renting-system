@@ -33,7 +33,7 @@ public class CategoryDAOImpl implements CategoryDAO {
     public void deleteCategory(int id) {
         Session session = sessionFactory.getCurrentSession();
         @SuppressWarnings("rawtypes")
-        Query query = session.createQuery("delete from category c where c.id=:id");
+        Query query = session.createQuery("delete from Category c where c.id=:id");
         query.setParameter("id", id);
         query.executeUpdate();
     }

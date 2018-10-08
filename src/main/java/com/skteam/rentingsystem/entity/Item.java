@@ -14,7 +14,7 @@ public class Item {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade= {CascadeType.REFRESH,CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST})
     @JoinColumn(name = "category_id")
     private Category category;
 

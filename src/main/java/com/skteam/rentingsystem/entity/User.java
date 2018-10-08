@@ -10,8 +10,8 @@ import java.util.List;
 public class User {
 
 	@Id
-    @Column(name = "username")
-    private String username;
+	@Column(name = "username")
+	private String username;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -35,6 +35,13 @@ public class User {
 	public User() {
 	}
 
+	public User(String username, String firstName, String lastName, String email) {
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
 	public void addOwnedItem(Item item) {
 		if (ownedItems == null) {
 			ownedItems = new ArrayList<>();
@@ -49,12 +56,12 @@ public class User {
 		comments.add(comment);
 	}
 
-    public String getUsername() {
-        return username;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getFirstName() {
@@ -107,14 +114,8 @@ public class User {
 
 	@Override
 	public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", rentedItems=" + rentedItems +
-                ", ownedItems=" + ownedItems +
-                ", comments=" + comments +
-                '}';
+		return "User{" + "username='" + username + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName
+				+ '\'' + ", email='" + email + '\'' + ", rentedItems=" + rentedItems + ", ownedItems=" + ownedItems
+				+ ", comments=" + comments + '}';
 	}
 }

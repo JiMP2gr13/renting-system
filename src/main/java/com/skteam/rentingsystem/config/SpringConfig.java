@@ -89,7 +89,7 @@ public class SpringConfig implements WebMvcConfigurer {
 		return dataSource;
 	}
 
-	private Properties getHibernateProps() {
+	protected Properties getHibernateProps() {
 		Properties hibernateProperties = new Properties();
 		hibernateProperties.setProperty("hibernate.dialect", environment.getProperty("hibernate.dialect"));
 		hibernateProperties.setProperty("hibernate.show_sql", environment.getProperty("hibernate.show_sql"));
@@ -97,7 +97,7 @@ public class SpringConfig implements WebMvcConfigurer {
 		return hibernateProperties;
 	}
 
-	private int getIntProperty(String propertyName) {
+	protected int getIntProperty(String propertyName) {
 		return Integer.parseInt(environment.getProperty(propertyName));
 	}
 
