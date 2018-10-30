@@ -1,5 +1,7 @@
 package com.skteam.rentingsystem.entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,7 +26,7 @@ public class Item {
     @Column(name = "details")
     private String details;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "owner_id")
     private User owner;
 

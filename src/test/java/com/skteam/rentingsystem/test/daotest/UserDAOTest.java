@@ -1,10 +1,13 @@
 package com.skteam.rentingsystem.test.daotest;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import javax.transaction.Transactional;
 
+import com.skteam.rentingsystem.entity.Category;
+import com.skteam.rentingsystem.entity.Item;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import com.skteam.rentingsystem.dao.UserDAO;
 import com.skteam.rentingsystem.entity.User;
 import com.skteam.rentingsystem.test.config.TestConfig;
+
+import java.util.List;
 
 @ContextConfiguration(classes = TestConfig.class, loader = AnnotationConfigContextLoader.class)
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,6 +42,22 @@ public class UserDAOTest {
 		assertNotNull(resultUser);
 		assertTrue(user.getEmail().equals(resultUser.getEmail()));
 		assertTrue(user.getUsername().equals(resultUser.getUsername()));
+	}
+
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void deleteUserTest() {
+		User user = new User("sasza", "Adam", "Kowalski", "kowal@gmail.com");
+
+		userDAO.saveUser(user);
+
+		userDAO.deleteUser("sasza");
+
+		User resultUser = userDAO.getUser("sasza");
+
+		assertNull(resultUser);
+
 	}
 	
 }

@@ -17,7 +17,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void saveUser(User user) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(user);
+        session.save(user);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class UserDAOImpl implements UserDAO {
 
         Session session = sessionFactory.getCurrentSession();
         @SuppressWarnings("rawtypes")
-        Query query = session.createQuery("delete from user u where u.username=:username");
+        Query query = session.createQuery("delete from User where username=:username");
         query.setParameter("username", username);
         query.executeUpdate();
 
